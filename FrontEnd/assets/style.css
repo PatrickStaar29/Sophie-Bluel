@@ -210,4 +210,9 @@ footer nav ul {
 	width: 100%;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	cursor: pointer;
+}
+.category__button.active{
+	background: #1D6154;
+	color: white;
 }
