@@ -26,13 +26,18 @@
 	<main>
 		<section class="form_placement">
             <h2 class="login_text">Login</h2>
-            <form class="form" action="process-login" method="POST">
-                <label class="form_text" for="email">E-mail :</label>
-                <input class="formulaire" type="email" id="email" name="email" required><br>
-                <label class="form_text" for="password">Mot de passe :</label>
-                <input class="formulaire" type="password" id="password" name="password" required><br>
-            </form>
-            <a class="bouton_se-connecter" href="">Se connecter</a>
+            <form class="formulaire" action="/login" method="post">
+				<div class="form">
+				  <label for="email">E-mail:</label>
+				  <input type="text" id="email" name="email" required>
+				</div>
+				<div class="form">
+				  <label for="password">Mot de passe</label>
+				  <input type="password" id="password" name="password" required>
+				</div>
+				<button class="bouton_se-connecter" type="submit">Se connecter</button>
+			</form>
+			<a class="mdp" href="#">Mot de passe oublié</a>
         </section>
 		
 	</main>
@@ -44,6 +49,6 @@
 			</ul>
 		</nav>
 	</footer>
-	<script src="./assets/script.js"></script>
+	<script src="./assets/js/login.js"></script>
 </body>
 </html>

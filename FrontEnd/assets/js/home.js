@@ -65,12 +65,12 @@ function showWorkFiltered(idCategory){
 getCategories()
 
 async function getAllWorks() {
-  const test = await fetch('http://localhost:5678/api/works')
-  const tablou = await test.json()
-  console.log(tablou)
-  for (const wawa of tablou){
-    const figure = `<figure data-category="${wawa.categoryId}"><img src="${wawa.imageUrl}" alt="${test}">
-    <figcaption>${wawa.title}</figcaption><figure>`
+  const figworks = await fetch('http://localhost:5678/api/works')
+  const tabl = await figworks.json()
+  console.log(tabl)
+  for (const figworks of tabl){
+    const figure = `<figure data-category="${figworks.categoryId}"><img src="${figworks.imageUrl}" alt="${figworks}">
+    <figcaption>${figworks.title}</figcaption><figure>`
      
       
     document.querySelector('.gallery').insertAdjacentHTML('beforeend', figure)
@@ -85,3 +85,4 @@ async function getAllWorks() {
 }
 
 getAllWorks()
+
