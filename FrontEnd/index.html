@@ -9,9 +9,22 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/94e2d5719b.js" crossorigin="anonymous"></script>
 	
 </head>
 <body>
+<!--  Modale galerie photo (vide): display:none
+		Au click sur "Modifier" >
+			- Afficher la modale
+			- Peupler la modale (depuis l'api)
+-->
+	<div class="modale">
+		<div class="modale_edition">
+		<i class="fa-light fa-pen-to-square"></i>
+		<p>Mode édition</p>
+		</div>
+		<button class="modale_bouton">publier les changements</button>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -66,6 +79,7 @@
 			</ul>
 		</nav>
 	</footer>
+	<script src="./assets/js/modale.js"></script>
 	<script src="./assets/js/home.js"></script>
 </body>
 </html>
