@@ -13,11 +13,6 @@
 	
 </head>
 <body>
-<!--  Modale galerie photo (vide): display:none
-		Au click sur "Modifier" >
-			- Afficher la modale
-			- Peupler la modale (depuis l'api)
--->
 	<div class="modale">
 		<div class="modale_edition">
 		<i class="fa-light fa-pen-to-square"></i>
@@ -31,7 +26,8 @@
 			<ul>
 				<li>projets</li>
 				<li><a href="#contact">contact</a></li>
-				<li><a href="./login.html">login</a></li>
+				<li id="login"><a href="./login.html">login</a></li>
+				<li id="logout"><a href="./index.html">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -40,7 +36,9 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
+				<a class="modale_modif" id="mod_dif">modifier</a>
 			</figure>
+			
 			<article>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
@@ -49,12 +47,14 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+			<div class="projet_text">
+				<h2>Mes Projets</h2>
+				<a id="mod_dif">modifier</a>
+			</div>
 			<div class="category__placement">
 				<button class="category__button active" data-category="0">Tous</button>
 			</div>
 			<div class="gallery">
-				
 			</div>
 		</section>
 		<section id="contact">

@@ -113,7 +113,14 @@ li:hover {
 	margin: auto;
 	width: 80%;
 }
-
+.modale_modif{
+	margin-top: 15px;
+	margin-left: 57px;
+}
+#mod_dif{
+	display: block;
+	font-family: 'Syne';
+}
 #introduction article {
 	flex: 1
 }
@@ -191,6 +198,13 @@ footer nav ul {
 
 /***catégorie***/
 
+.projet_text{
+	display: flex;
+    justify-content: center;
+    align-items: baseline;
+	gap: 30px;
+}
+
 .category__placement{
 	display: flex;
 	padding-top: 21px;
@@ -253,6 +267,14 @@ footer nav ul {
 	width: 379px;
 	margin-top: 8px;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#error{
+	display: none;
+	color: #db5856;
+    text-decoration: underline;
+    font-family: 'syne';
+    font-size: 16px;
 }
 
 .bouton_se-connecter{

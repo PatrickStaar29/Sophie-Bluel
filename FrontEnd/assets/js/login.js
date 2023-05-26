@@ -3,6 +3,8 @@ async function getLogin() {
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
 
+    const errorText = document.getElementById('error')
+
     const logApi = await fetch('http://localhost:5678/api/users/login',{
         method: 'POST',
         headers: {
@@ -16,7 +18,7 @@ async function getLogin() {
     localStorage.setItem('token', data.token)
     window.location.href = 'index.html'
     } else {
-    error.textContent = 'test'
+    errorText.style.display = 'block'
     }   
 }
 // getLogin()
