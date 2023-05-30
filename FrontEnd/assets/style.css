@@ -114,11 +114,13 @@ li:hover {
 	width: 80%;
 }
 .modif_design{
+	cursor: pointer;
 	font-family: 'Syne';
 	margin-top: 15px;
 	margin-left: 57px;
 }
 .modif_projet{
+	cursor: pointer;
 	font-family: 'Syne';
 }
 #introduction article {
@@ -309,14 +311,32 @@ footer nav ul {
 	position: absolute;
     background: white;
     display: flex;
-    margin: auto;
     height: 731px;
-    width: 43.75%;
+    width: 630px;
     justify-content: center;
-    align-items: center;
     top: 50%;
     left: 50%;
     transform: translateX(-50%);
+	border-radius: 10px;
+}
+.modale_galery{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modale_titre{
+	margin-top: 60px;
+}
+.modale_peuple{
+	display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin: 47px 0px;
+    gap: 6px;
+    width: 66.6%;
+}
+.modale_img{
+	width: 100%;
+    height: auto;
 }
 
 /****/
