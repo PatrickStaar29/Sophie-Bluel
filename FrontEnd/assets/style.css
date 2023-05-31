@@ -114,14 +114,18 @@ li:hover {
 	width: 80%;
 }
 .modif_design{
-	cursor: pointer;
-	font-family: 'Syne';
-	margin-top: 15px;
-	margin-left: 57px;
+	display: flex;
+    cursor: pointer;
+    font-family: 'Syne';
+    margin-top: 15px;
+    margin-left: 57px;
+    gap: 10px;
 }
 .modif_projet{
-	cursor: pointer;
-	font-family: 'Syne';
+	display: flex;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Syne';
 }
 #introduction article {
 	flex: 1
@@ -334,9 +338,25 @@ footer nav ul {
     gap: 6px;
     width: 66.6%;
 }
+.modale_cross{
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 6px;
+	top: 6px;
+    background: black;
+    width: 17px;
+    height: 17px;
+    border-radius: 2px;
+}
 .modale_img{
 	width: 100%;
     height: auto;
+}
+
+.fa-trash-can{
+	font-size: 9px;
 }
 
 /****/

@@ -15,8 +15,8 @@ if (token){
     loginButton.style.display = 'none'
     logoutButton.style.display = 'block'
     filtre.style.display = 'none'
-    modifDesign.style.display = 'block'
-    modifProjet.style.display = 'block'
+    modifDesign.style.display = 'null'
+    modifProjet.style.display = 'null'
 }else{
     barreModif.style.display = 'none'
     loginButton.style.display = 'block'
@@ -65,19 +65,22 @@ async function getAllWorks() {
     const tabl = await figworks.json()
     console.log(tabl)
     for (const figworks of tabl){
-      const modalePeuple = `<figure data-category="${figworks.categoryId}"><img class='modale_img' src="${figworks.imageUrl}" alt="${figworks}">
-      <figure>`
-       
-        
+        // Ajouter l'icone de suppression
+      const modalePeuple = `<figure data-category="${figworks.categoryId}" style="position:relative;"><span class='modale_cross'><i class="fa-solid fa-trash-can"></i></span><img class='modale_img' src="${figworks.imageUrl}" data-category="${figworks.id} alt="${figworks.title}">
+      </figure>`
       document.querySelector('.modale_peuple').insertAdjacentHTML('beforeend', modalePeuple)
     }
-    // On ajoute le bouton sur le DOM
-    // Créer les éléments
-  
-    /*
-        console.log()
-        console.table()
-    */
+
+    // Ajouter les écouteurs d'évènement au click sur la poubelle
   }
-  
   getAllWorks()
+
+  /*
+  Tu cliques sur le bouton pour supprimer une photo
+  Tu fais ton appel à l'api pour supprimer la photo
+    > Tu attends le retour de l'appel API
+    Si le retour de l'appel API est bon 
+        > Tu fais un .remove() directement de la modale
+        > Tu fais un .remove() de la page d'accueil
+
+  */
