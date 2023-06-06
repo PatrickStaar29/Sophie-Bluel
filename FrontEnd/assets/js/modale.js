@@ -61,19 +61,54 @@ modalButtons.forEach(function(a) {
 modaleBackground.addEventListener('click', closeModal)
 
 async function getAllWorks() {
-    const figworks = await fetch('http://localhost:5678/api/works')
-    const tabl = await figworks.json()
-    console.log(tabl)
-    for (const figworks of tabl){
-        // Ajouter l'icone de suppression
-      const modalePeuple = `<figure data-category="${figworks.categoryId}" style="position:relative;"><span class='modale_cross'><i class="fa-solid fa-trash-can"></i></span><img class='modale_img' src="${figworks.imageUrl}" data-category="${figworks.id} alt="${figworks.title}">
-      </figure>`
-      document.querySelector('.modale_peuple').insertAdjacentHTML('beforeend', modalePeuple)
+    const figwork = await fetch('http://localhost:5678/api/works');
+    const tabl = await figwork.json();
+    console.log(tabl);
+    for (const figwork of tabl) {
+      // Ajouter l'icone de suppression avec l'attribut onclick
+      const modalePeuple = `<figure data-category="${figwork.categoryId}" style="position:relative;"><span class='modale_cross' data-category="${figwork.id}"><i class="fa-solid fa-trash-can" ></i></span>
+        <img class='modale_img' src="${figwork.imageUrl}" data-category="${figwork.id}" alt="${figwork.title}"><figcaption>éditer</figcaption></figure>`;
+      document.querySelector('.modale_peuple').insertAdjacentHTML('beforeend', modalePeuple);
     }
+    const suppr = document.querySelectorAll('.modale_cross')
+        suppr.forEach((el) => {
+                el.addEventListener('click', deleteFigure);
+            })
 
-    // Ajouter les écouteurs d'évènement au click sur la poubelle
+
+            async function deleteFigure(event) {
+
+              const span = event.currentTarget;
+              const figure = span.closest('figure');
+              const figureId = span.getAttribute('data-category');
+              const token = localStorage.getItem('token');
+            
+              const response = await fetch(`http://localhost:5678/api/works/${figureId}`, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              });
+            
+              if (response.ok) {
+                figure.remove();
+                console.log('Figure supprimée avec succès.');
+              } else {
+                console.error('Erreur lors de la suppression de la figure.');
+              }
+            }
+            
+            
+            
+      
   }
-  getAllWorks()
+  
+  // Fonction pour supprimer une figure
+  
+  
+  getAllWorks();
+  
+  
 
   /*
   Tu cliques sur le bouton pour supprimer une photo
@@ -84,3 +119,8 @@ async function getAllWorks() {
         > Tu fais un .remove() de la page d'accueil
 
   */
+
+const modalePublication = document.querySelector('.modale_publication')
+
+modalePublication.style.display = 'none'
+
