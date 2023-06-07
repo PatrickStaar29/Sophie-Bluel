@@ -69,7 +69,7 @@ async function getAllWorks() {
   const tabl = await figworks.json()
   console.log(tabl)
   for (const figworks of tabl){
-    const figure = `<figure data-category="${figworks.categoryId}"><img src="${figworks.imageUrl}" alt="${figworks}">
+    const figure = `<figure data-category="${figworks.categoryId}"><img src="${figworks.imageUrl}" data-id="${figworks.id}" alt="${figworks.title}">
     <figcaption>${figworks.title}</figcaption><figure>`
      
       

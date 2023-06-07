@@ -16,8 +16,31 @@
 	<div class="modale_background"></div>
 	<div class="modale" aria-hidden="true">
 		<div class="modale_galery">
+			<i class="fa-solid fa-xmark modale_fermeture"></i>
 			<h2 class="modale_titre">Galerie photo</h2>
 			<div class="modale_peuple"></div>
+			<button class="modale_bouton">Ajouter une photo</button>
+			<button class="modale_suppression">Supprimmer la galerie</button>
+		</div>
+		<div class="modale_publication">
+			<i class="fa-solid fa-xmark modale_fermeture"></i>
+			<h2 class="publication_text">Ajout photo</h2>
+			<div class="modale_ajouter">
+				<i class="fa-regular fa-image icone_publi"></i>
+				<button class="modale_boutton-suppr">+ Ajouter photo</button>
+				<p class="text_modale">jpn, png : 4mo max</p>
+			</div>
+			<form class="publication_form" action="#" method="post">
+				<div>
+				  <label for="title">Titre</label>
+				  <input class="publication_place" type="text" name="Titre" required>
+				</div>
+				<div>
+				  <label for="category">Catégorie</label>
+				  <input class="publication_place" type="password" name="password" required>
+				</div>
+			</form>
+			<button class="publication_validation">Valider</button>
 		</div>
 	</div>
 	<div class="barre_modif">
