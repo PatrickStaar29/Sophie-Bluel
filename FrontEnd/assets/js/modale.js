@@ -64,7 +64,16 @@ const modalFermeture = document.querySelectorAll('.modale_fermeture')
 
 modalFermeture.forEach(function(a) {
     a.addEventListener('click', closeModal)
-  }) 
+}) 
+
+const flecheFermeture = document.querySelector('.fleche_retour');
+const modalePub = document.querySelector('.modale_publication');
+const modaleGalery = document.querySelector('.modale_galery');
+
+flecheFermeture.addEventListener('click', function() {
+  modalePub.style.display = 'none';
+  modaleGalery.style.display = 'flex';
+})
 
 async function getAllWorks() {
     const figwork = await fetch('http://localhost:5678/api/works')
@@ -97,29 +106,14 @@ async function deleteFigure(event) {
   if (response.ok) {
     figure.remove()
 
-    // Ici il faut aussi supprimer l'image qui se trouve sur la page
     console.log('Figure supprimée avec succès.');
   } else {
     console.error('Erreur lors de la suppression de la figure.')
   }
 }
-  // Fonction pour supprimer une figure
   
+  getAllWorks()
   
-  getAllWorks();
-  
-  
-
-  /*
-  Tu cliques sur le bouton pour supprimer une photo
-  Tu fais ton appel à l'api pour supprimer la photo
-    > Tu attends le retour de l'appel API
-    Si le retour de l'appel API est bon 
-        > Tu fais un .remove() directement de la modale
-        > Tu fais un .remove() de la page d'accueil
-
-  */
-
 const modalePublication = document.querySelector('.modale_publication')
 
 modalePublication.style.display = 'none'
@@ -135,8 +129,6 @@ bouton.addEventListener('click', function() {
   publication.style.display = 'flex'
 })
 
-
-
 /*
   Fonction deleteAllWorks
 
@@ -147,3 +139,60 @@ bouton.addEventListener('click', function() {
   Une fois que tout est supprimé, tu sélectionne modale_peuple et tu fais innerHTML = "" (ca le met à vide, en gros ça vide tous les travaux d'un coup)
   Pareil pour .gallery. innerHTML à ""
 */
+
+async function addWorks(){ 
+  const boutonValidation = document.querySelector('.modale_boutton-ajouter');
+  const pubPlacement = document.querySelector('.publication_placement')
+
+  boutonValidation.addEventListener('click', () => {
+    const inputImage = document.createElement('input');
+    inputImage.type = 'file';
+
+    inputImage.addEventListener('change', () => {
+      const file = inputImage.files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        pubPlacement.style.display = 'none'
+        const image = document.createElement('img');
+        image.src = reader.result;
+
+        image.classList.add('publication_image')
+        const modaleAjouter = document.querySelector('.modale_ajouter');
+
+        modaleAjouter.appendChild(image);
+      });
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+    inputImage.click();
+  });
+}
+
+addWorks()
+
+async function addProjet(event){
+  const ahah = document.querySelector('.publication_form')
+
+  ahah.addEventListener('submit', (e) =>{
+    e.preventDefault()
+    const file = document.querySelector('.publication_image');
+    const title = document.querySelector('#titre').value;
+    const cate = document.querySelector("#categorie").value;
+    // Créer un nouvel objet FormData
+    const formData = new FormData();
+
+    formData.append('image', file)
+    formData.append('texte', title);
+    formData.append('categorie', cate);
+
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+  
+    // Afficher les données dans la consoleaa
+ })
+  
+}
+addProjet()

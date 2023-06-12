@@ -273,6 +273,7 @@ footer nav ul {
 	width: 379px;
 	margin-top: 8px;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	outline: none;
 }
 
 #error{
@@ -315,7 +316,7 @@ footer nav ul {
 	position: absolute;
     background: white;
     display: flex;
-    height: 731px;
+    height: auto;
     width: 630px;
     justify-content: center;
     top: 50%;
@@ -327,6 +328,7 @@ footer nav ul {
 	display: flex;
     flex-direction: column;
     align-items: center;
+	margin: 30px;
 }
 .modale_fermeture{
 	position: absolute;
@@ -335,14 +337,15 @@ footer nav ul {
     cursor: pointer;
 }
 .modale_titre{
-	margin-top: 60px;
+	margin-top: 30px;
 }
 .modale_peuple{
 	display: grid;
     grid-template-columns: repeat(5,1fr);
-    margin: 47px 0px;
-    gap: 6px;
-    width: 66.6%;
+    margin: 47px 0 38px;
+    column-gap: 6px;
+    row-gap: 10px;
+    width: 72.72%;
     border-bottom: #B3B3B3 1px solid;
     padding-bottom: 47px;
 }
@@ -382,6 +385,7 @@ footer nav ul {
 }
 .modale_suppression{
 	margin-top: 23px;
+    margin-bottom: 18px;
     line-height: 17px;
     border: none;
     background: none;
@@ -398,12 +402,20 @@ footer nav ul {
     width: 100%;
     align-items: center;
 }
+.fleche_retour{
+	position: absolute;
+    left: 35px;
+    top: 32px;
+    cursor: pointer;
+}
 .publication_text{
 	font-family: 'Work Sans';
 	font-size: 26px;
 	font-weight: 400;
 	margin-top: 30px;
+	margin-bottom: 6px;
 	color: black;
+	line-height: 30px;
 }
 .modale_ajouter{
 	display: flex;
@@ -414,13 +426,21 @@ footer nav ul {
     flex-direction: column;
     align-items: center;
 }
+.publication_image{
+	height: 100%;
+}
+.publication_placement{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .icone_publi{
     font-size: 46px;
     color: #CBD6DC;
 	margin-bottom: 21px;
     margin-top: 28px;
 }
-.modale_boutton-suppr{
+.modale_boutton-ajouter{
     border: none;
     background-color: #CBD6DC;
     height: 36px;
@@ -439,9 +459,8 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 	gap: 21px;
-	border-bottom: 1px solid #B3B3B3;
     width: 420px;
-    padding-bottom: 47px;
+    padding-bottom: 25px;
 }
 .publication_place{
 	border: none;
@@ -449,12 +468,19 @@ footer nav ul {
     width: 416px;
     margin-top: 10px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	outline: none;
+}
+.barre_separation{
+	border: 1px solid #B3B3B3;
+    padding: 0px;
+    margin: 26px 0 11px;
 }
 .publication_validation{
 	border: none;
     width: 237px;
     height: 36px;
     border-radius: 60px;
+	margin: auto;
     background: #A7A7A7;
     color: white;
     font-family: 'Syne';
