@@ -141,58 +141,78 @@ bouton.addEventListener('click', function() {
 */
 
 async function addWorks(){ 
-  const boutonValidation = document.querySelector('.modale_boutton-ajouter');
+  const boutonValidation = document.querySelector('.modale_boutton-ajouter')
   const pubPlacement = document.querySelector('.publication_placement')
 
   boutonValidation.addEventListener('click', () => {
-    const inputImage = document.createElement('input');
+    inputImage = document.createElement('input');
     inputImage.type = 'file';
 
     inputImage.addEventListener('change', () => {
-      const file = inputImage.files[0];
-      const reader = new FileReader();
+      const file = inputImage.files[0]
+      const reader = new FileReader()
 
       reader.addEventListener('load', () => {
         pubPlacement.style.display = 'none'
-        const image = document.createElement('img');
-        image.src = reader.result;
+        const image = document.createElement('img')
+        image.src = reader.result
+
 
         image.classList.add('publication_image')
-        const modaleAjouter = document.querySelector('.modale_ajouter');
+        const modaleAjouter = document.querySelector('.modale_ajouter')
 
-        modaleAjouter.appendChild(image);
-      });
+        modaleAjouter.appendChild(image)
+      })
       if (file) {
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file)
       }
     });
-    inputImage.click();
+    inputImage.click()
   });
 }
 
 addWorks()
 
-async function addProjet(event){
-  const ahah = document.querySelector('.publication_form')
+let inputImage;
 
-  ahah.addEventListener('submit', (e) =>{
+async function addProjet(){
+  const pubProjet = document.querySelector('.publication_form')
+
+  pubProjet.addEventListener('submit', async (e) => {
     e.preventDefault()
-    const file = document.querySelector('.publication_image');
-    const title = document.querySelector('#titre').value;
-    const cate = document.querySelector("#categorie").value;
-    // Créer un nouvel objet FormData
-    const formData = new FormData();
+    const imgPub = inputImage.files[0]
+    const title = document.querySelector('#titre').value
+    const cate = document.querySelector("#categorie").value
 
-    formData.append('image', file)
-    formData.append('texte', title);
-    formData.append('categorie', cate);
+    const formData = new FormData()
+    formData.append('image', imgPub)
+    formData.append('title', title)
+    formData.append('category', cate)
 
     for (const pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
+      console.log(pair[0] + ': ' + pair[1])
     }
-  
-    // Afficher les données dans la consoleaa
- })
+
+    try {
+      const token = localStorage.getItem('token')
+      const response = await fetch('http://localhost:5678/api/works', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'multipart/form-data',
+        },
+        body: formData,
+      })
+
+      if (response.ok) {
+        console.log('Projet ajouté !')
+      } else {
+        console.error('Erreur')
+      }
+    } catch (error) {
+      console.error('Une erreur s\'est produite lors de la requête :', error)
+    }
+  });
   
 }
 addProjet()
