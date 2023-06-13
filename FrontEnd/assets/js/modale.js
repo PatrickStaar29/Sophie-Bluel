@@ -66,13 +66,13 @@ modalFermeture.forEach(function(a) {
     a.addEventListener('click', closeModal)
 }) 
 
-const flecheFermeture = document.querySelector('.fleche_retour');
-const modalePub = document.querySelector('.modale_publication');
-const modaleGalery = document.querySelector('.modale_galery');
+const flecheFermeture = document.querySelector('.fleche_retour')
+const modalePub = document.querySelector('.modale_publication')
+const modaleGalery = document.querySelector('.modale_galery')
 
 flecheFermeture.addEventListener('click', function() {
-  modalePub.style.display = 'none';
-  modaleGalery.style.display = 'flex';
+  modalePub.style.display = 'none'
+  modaleGalery.style.display = 'flex'
 })
 
 async function getAllWorks() {
@@ -86,8 +86,12 @@ async function getAllWorks() {
     }
     const suppr = document.querySelectorAll('.modale_cross')
         suppr.forEach((el) => {
-                el.addEventListener('click', deleteFigure)
-            })
+          el.addEventListener('click', deleteFigure)
+        })
+    const supprAll = document.querySelectorAll('.modale_suppression')
+      supprAll.forEach((el) => {
+        el.addEventListener('click', deleteAllFigures)
+      })
   }
 async function deleteFigure(event) {
 
@@ -111,8 +115,29 @@ async function deleteFigure(event) {
     console.error('Erreur lors de la suppression de la figure.')
   }
 }
-  
-  getAllWorks()
+async function deleteAllFigures() {
+  const figures = document.querySelectorAll('figure')
+  console.log(figures)
+   const token = localStorage.getItem('token')
+
+ for (const figure of figures) {
+    const figureId = figure.querySelector('.modale_cross').getAttribute('data-id')
+    const response = await fetch(`http://localhost:5678/api/works/${figureId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      figure.remove()
+      console.log('Figure supprimée avec succès.');
+    } else {
+      console.error('Erreur lors de la suppression de la figure.')
+    }
+  }
+}
+getAllWorks()
   
 const modalePublication = document.querySelector('.modale_publication')
 
@@ -140,12 +165,12 @@ bouton.addEventListener('click', function() {
   Pareil pour .gallery. innerHTML à ""
 */
 
-async function addWorks(){ 
+async function addWorks() {
   const boutonValidation = document.querySelector('.modale_boutton-ajouter')
   const pubPlacement = document.querySelector('.publication_placement')
 
   boutonValidation.addEventListener('click', () => {
-    inputImage = document.createElement('input');
+    inputImage = document.createElement('input')
     inputImage.type = 'file';
 
     inputImage.addEventListener('change', () => {
@@ -153,27 +178,40 @@ async function addWorks(){
       const reader = new FileReader()
 
       reader.addEventListener('load', () => {
-        pubPlacement.style.display = 'none'
         const image = document.createElement('img')
         image.src = reader.result
-
-
         image.classList.add('publication_image')
         const modaleAjouter = document.querySelector('.modale_ajouter')
 
         modaleAjouter.appendChild(image)
-      })
+      });
+
       if (file) {
+        const maxSize = 4 * 1024 * 1024
+        const allowedTypes = ['image/jpeg', 'image/png']
+
+        if (file.size > maxSize) {
+          console.error('Erreur : La taille de l\'image dépasse la limite de 4 Mo.')
+          return;
+        }
+
+        if (!allowedTypes.includes(file.type)) {
+          console.error('Erreur : Le format de l\'image doit être JPEG ou PNG.')
+          return;
+        }
+
         reader.readAsDataURL(file)
+        pubPlacement.style.display = 'none'
       }
     });
+
     inputImage.click()
   });
 }
 
 addWorks()
 
-let inputImage;
+let inputImage
 
 async function addProjet(){
   const pubProjet = document.querySelector('.publication_form')
