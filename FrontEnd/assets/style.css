@@ -349,7 +349,7 @@ footer nav ul {
     border-bottom: #B3B3B3 1px solid;
     padding-bottom: 47px;
 }
-.modale_cross{
+.modale_cross, .modale_drag{
 	display: flex;
 	justify-content: center;
     align-items: center;
@@ -361,6 +361,10 @@ footer nav ul {
     height: 17px;
     border-radius: 2px;
 	z-index: 3;
+}
+span.modale_drag{
+	right: 28px;
+	color: white;
 }
 .modale_img{
 	width: 100%;

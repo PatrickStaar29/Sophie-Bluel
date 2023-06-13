@@ -75,15 +75,28 @@ flecheFermeture.addEventListener('click', function() {
   modaleGalery.style.display = 'flex'
 })
 
+
+
 async function getAllWorks() {
-    const figwork = await fetch('http://localhost:5678/api/works')
-    const tabl = await figwork.json()
-    console.log(tabl)
-    for (const figwork of tabl) {
-      const modalePeuple = `<figure data-category="${figwork.categoryId}" style="position:relative;"><span class='modale_cross' data-id="${figwork.id}"><i class="fa-solid fa-trash-can" ></i></span>
-        <img class='modale_img' src="${figwork.imageUrl}" data-id="${figwork.id}" alt="${figwork.title}"><figcaption>éditer</figcaption></figure>`
-      document.querySelector('.modale_peuple').insertAdjacentHTML('beforeend', modalePeuple)
-    }
+  const figwork = await fetch('http://localhost:5678/api/works');
+  const tabl = await figwork.json();
+  console.log(tabl);
+  
+  let index = 0;
+  for (const figwork of tabl) {
+    const modalePeuple = `
+      <figure data-category="${figwork.categoryId}" style="position:relative;">
+        ${index === 0 ? '<span class="modale_drag"><i class="fa-solid fa-arrows-up-down-left-right"></i></span>' : ''}
+        <span class='modale_cross' data-id="${figwork.id}"><i class="fa-solid fa-trash-can"></i></span>
+        <img class='modale_img' src="${figwork.imageUrl}" data-id="${figwork.id}" alt="${figwork.title}">
+        <figcaption>éditer</figcaption>
+      </figure>`;
+      
+    document.querySelector('.modale_peuple').insertAdjacentHTML('beforeend', modalePeuple);
+    index++;
+  }
+    
+    console.log(tabl[0])
     const suppr = document.querySelectorAll('.modale_cross')
         suppr.forEach((el) => {
           el.addEventListener('click', deleteFigure)
@@ -226,10 +239,6 @@ async function addProjet(){
     formData.append('image', imgPub)
     formData.append('title', title)
     formData.append('category', cate)
-
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1])
-    }
 
     try {
       const token = localStorage.getItem('token')
