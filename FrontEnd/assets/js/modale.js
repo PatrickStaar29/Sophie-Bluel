@@ -75,8 +75,6 @@ flecheFermeture.addEventListener('click', function() {
   modaleGalery.style.display = 'flex'
 })
 
-
-
 async function getAllWorks() {
   const figwork = await fetch('http://localhost:5678/api/works');
   const tabl = await figwork.json();
@@ -167,16 +165,11 @@ bouton.addEventListener('click', function() {
   publication.style.display = 'flex'
 })
 
-/*
-  Fonction deleteAllWorks
+const size = document.getElementById('size')
+const format = document.getElementById('format')
 
-  > Tu sélectionne TOUTES les figures dans modale_peuple
-  > Tu fais une boucle sur chaque figure en récupérant leur ID
-  > Tu fais un fetch dans ta boucle pour supprimer les images une à une
-
-  Une fois que tout est supprimé, tu sélectionne modale_peuple et tu fais innerHTML = "" (ca le met à vide, en gros ça vide tous les travaux d'un coup)
-  Pareil pour .gallery. innerHTML à ""
-*/
+size.style.display = 'none'
+format.style.display = 'none'
 
 async function addWorks() {
   const boutonValidation = document.querySelector('.modale_boutton-ajouter')
@@ -204,12 +197,14 @@ async function addWorks() {
         const allowedTypes = ['image/jpeg', 'image/png']
 
         if (file.size > maxSize) {
-          console.error('Erreur : La taille de l\'image dépasse la limite de 4 Mo.')
+          size.style.removeProperty('display')
+          format.style.display = 'none'
           return;
         }
 
         if (!allowedTypes.includes(file.type)) {
-          console.error('Erreur : Le format de l\'image doit être JPEG ou PNG.')
+          format.style.removeProperty('display')
+          size.style.display = 'none'
           return;
         }
 

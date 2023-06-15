@@ -14,23 +14,16 @@ async function getLogin() {
     })
     if (logApi.ok){
     const data = await logApi.json()
-    // console.table(data.token)
     localStorage.setItem('token', data.token)
     window.location.href = 'index.html'
     } else {
     errorText.style.display = 'block'
     }   
 }
-// getLogin()
 const button = document.querySelector('button')
 
 button.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // Vérification si les champs sont remplis
-
-    // Si les champs sont rempli lancer la fonction
     getLogin()
 })
-
-

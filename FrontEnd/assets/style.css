@@ -459,6 +459,14 @@ span.modale_drag{
     font-family: 'Work Sans';
     margin-top: 7px;
 }
+.text_modale-error{
+	color: #db5856;
+    font-weight: 600;
+	font-size: 10px;
+    font-family: 'Work Sans';
+    margin-top: 7px;
+}
+
 .publication_form{
 	display: flex;
 	flex-direction: column;
